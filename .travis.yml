@@ -1,0 +1,28 @@
+language: node_js
+
+services:
+  - docker
+
+before_install:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+script:
+  - cd udagram-api-feed
+  - docker build -t rexnyu/udagram-api-feed .
+  - docker push rexnyu/udagram-api-feed
+  - cd ..
+  - cd udagram-api-users
+  - docker build -t rexnyu/udagram-api-users .
+  - docker push rexnyu/udagram-api-users
+  - cd ..
+  - cd udagram-reverseproxy
+  - docker build -t rexnyu/udagram-reverseproxy .
+  - docker push rexnyu/udagram-reverseproxy
+  - cd ..
+  - cd udagram-frontend
+  - docker build -t rexnyu/udagram-frontend .
+  - docker push rexnyu/udagram-frontend
+  - cd ..
+
+after_install:
+  - echo "Done"
