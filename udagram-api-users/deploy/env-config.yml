@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  POSTGRES_USERNAME: postgres
+  POSTGRES_PASSWORD: udagramaws?!
+  POSTGRES_DATABASE: udagram
+  POSTGRES_HOST: database-2.cfbkt0t4bjfl.us-west-2.rds.amazonaws.com
+  AWS_MEDIA_BUCKET: udagram-s3
+metadata:
+  name: env-config
